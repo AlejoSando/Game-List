@@ -6,7 +6,8 @@ const mysql = require('mysql');
 const tasksRoutes = require('./routes/tasks');
 
 const app = express();
-app.set('port', 4000);
+const PORT = process.env.PORT || 3000;
+app.set(PORT, 4000);
 
 app.use(bodyParser.urlencoded({
   extended: true
@@ -27,8 +28,8 @@ app.use(myconnection(mysql, {
   database: 'db_game_list'
 }, 'single'));
 
-app.listen(app.get('port'), () => {
-  console.log('Listening on port ', app.get('port'));
+app.listen(PORT, () => {
+  console.log('Listening on port ', PORT);
 });
 
 app.use('/', tasksRoutes);
